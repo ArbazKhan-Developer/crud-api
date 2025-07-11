@@ -8,7 +8,6 @@ const serverlessConfiguration: AWS = {
         name: 'aws',
         runtime: 'nodejs18.x',
         region: 'ap-south-1',
-        stage: 'dev',
         iamRoleStatements: [
             {
                 Effect: 'Allow',
@@ -43,7 +42,7 @@ const serverlessConfiguration: AWS = {
             MyDynamoDBTable: {
                 Type: 'AWS::DynamoDB::Table',
                 Properties: {
-                    TableName: 'my-product-table-${self: provider.stage}',
+                    TableName: 'my-product-table-dev',
                     AttributeDefinitions: [
                         {
                             AttributeName: 'id',
