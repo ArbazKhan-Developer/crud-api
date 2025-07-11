@@ -8,6 +8,7 @@ const serverlessConfiguration: AWS = {
         name: 'aws',
         runtime: 'nodejs18.x',
         region: 'ap-south-1',
+        stage: 'dev',
         iamRoleStatements: [
             {
                 Effect: 'Allow',
@@ -36,7 +37,29 @@ const serverlessConfiguration: AWS = {
             target: 'node18',
             platform: 'node'
         }
+    },
+    resources: {
+        Resources: {
+            MyDynamoDBTable: {
+                Type: 'AWS::DynamoDB::Table',
+                Properties: {
+                    TableName: 'my-product-table-${self: provider.stage}',
+                    AttributeDefinitions: [
+                        {
+                            AttributeName: 'id',
+                            AttributeType: 'S'
+                        }
+                    ],
+                    KeySchema: {
+                        AttributeName: 'id', 
+                        KeyType: 'HASH'
+                    },
+                    BillingMode: 'PAY_PER_REQUEST'
+                }
+            }
+        }
     }
+
 }
 
 
