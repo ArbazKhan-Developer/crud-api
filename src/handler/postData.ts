@@ -1,14 +1,23 @@
-import { APIGatewayProxyHandler } from "aws-lambda";
-import { v4 as uuidv4 } from "uuid";
-const id = uuidv4()
+// import { APIGatewayProxyHandler } from "aws-lambda";
+import CreateApi from "../api/createApi";
+
+interface Event {
+    id: string
+    productName: string
+    expiry: string
+    count: number
+}
 
 
-export const handler: APIGatewayProxyHandler = async (event)=>{
+
+export const handler = async (event: Event)=>{
 
     try {
-        console.log(`event received:: ${event}`);
-        console.log(`id:: ${id} `);
+        console.log(`event received:: ${JSON.stringify(event)}`);
+
+        await new CreateApi().execute(event)
         
+        // const dynamoResponse = await this.
         return {
             statusCode: 201,
             body: "data created"
