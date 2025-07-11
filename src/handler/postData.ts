@@ -7,7 +7,7 @@ export const handler: APIGatewayProxyHandler = async (event)=>{
 
     try {
         console.log(`event received:: ${event}`);
-        console.log(`id:: ${id}`);
+        console.log(`id:: ${id} `);
         
         return {
             statusCode: 201,
