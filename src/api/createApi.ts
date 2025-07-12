@@ -11,14 +11,14 @@ interface Event {
 class CreateApi {
 
 
-    async execute(event: Event): Promise<void>{
+    async execute(event: Event){
         try {
             console.log(`create api called:: ${JSON.stringify(event)}`);
             await new DynamoDao().postData(event);
-            return;
+
+            return "data created in dynamo";
         } catch (error) {
             console.log(`error in api layer: ${error}`);
-            
         }
     }
 }

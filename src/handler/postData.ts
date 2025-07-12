@@ -15,8 +15,8 @@ export const handler = async (event: Event)=>{
     try {
         console.log(`event received:: ${JSON.stringify(event)}`);
 
-        await new CreateApi().execute(event)
-        
+        const response = await new CreateApi().execute(event)
+        console.log(`response received from create api layer: ${response}`);
         // const dynamoResponse = await this.
         return {
             statusCode: 201,
