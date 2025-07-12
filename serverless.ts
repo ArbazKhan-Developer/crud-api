@@ -9,12 +9,12 @@ const serverlessConfiguration: AWS = {
     runtime: "nodejs18.x",
     region: "ap-south-1",
     iamRoleStatements: [
-      {
-        Effect: "Allow",
-        Action: ["dynamodb: *"],
-        Resource: "*",
-      },
-    ],
+        {
+          Effect: "Allow",
+          Action: ["dynamodb:PutItem"],
+          Resource: "arn:aws:dynamodb:ap-south-1:331029743544:table/my-product-table-dev",
+        },
+      ],      
   },
   functions: {
     postRecord: {

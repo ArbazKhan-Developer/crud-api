@@ -1,21 +1,14 @@
-// import { APIGatewayProxyHandler } from "aws-lambda";
+import { APIGatewayProxyHandler } from "aws-lambda";
 import CreateApi from "../api/createApi";
 
-interface Event {
-    id: string
-    productName: string
-    expiry: string
-    count: number
-}
 
 
-
-export const handler = async (event: Event)=>{
+export const handler = async (event: APIGatewayProxyHandler)=>{
 
     try {
         console.log(`event received:: ${JSON.stringify(event)}`);
 
-        const response = await new CreateApi().execute(event)
+        const response = await new CreateApi().execute(JSON.parse(event.body))
         console.log(`response received from create api layer: ${response}`);
         // const dynamoResponse = await this.
         return {

@@ -19,6 +19,7 @@ class CreateApi {
             return "data created in dynamo";
         } catch (error) {
             console.log(`error in api layer: ${error}`);
+            throw error;
         }
     }
 }
